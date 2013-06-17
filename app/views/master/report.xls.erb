@@ -1,0 +1,19 @@
+
+<table border="1">
+  <tr>
+    <th>User Name</th>
+    <th>Task ID</th>
+    <th>Date</th>
+    <th>Hours</th>
+  </tr>
+
+<% @time.each do |t| %>
+  <tr>
+    <td><%= t.user.name %></td>
+    <td><%= t.task_id %></td>
+    <td><%= t.date %></td>
+    <td><%= t.hours %></td>
+  </tr>
+<% end %>
+
+</table>

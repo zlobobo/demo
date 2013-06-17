@@ -1,0 +1,52 @@
+<%= form_for(@timetable) do |f| %>
+  <% if @timetable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@timetable.errors.count, "error") %> prohibited this timetable from being saved:</h2>
+
+      <ul>
+      <% @timetable.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div> 
+    
+<% if current_user.admin %>
+<%= f.label :user_id, 'User' %>:<br/>
+<%= f.select :user_id, options_from_collection_for_select(@users, "id", "name", params[:user_id])%>
+<%else%>
+<%= f.text_field :user_id, :value => current_user.id, :hidden => true%>
+<%end%>
+
+
+  </div>
+
+  <div>
+    <%= f.label :task_id, 'Task ID' %>:<br/>
+    <%= f.number_field :task_id%>
+  </div>
+
+  <div>
+    <%= f.label :date, 'Date' %>:<br/>
+    <%= f.date_select :date, :default => Date.current %>
+  </div>
+
+
+  <div>
+    <%= f.label :comment, 'Comment' %>:<br/>
+    <%= f.text_area :comment%>
+  </div>
+
+<div>
+    <%= f.label :hours, 'Hours' %>:<br/>
+    <%= f.number_field :hours%>
+  </div>
+
+<br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
