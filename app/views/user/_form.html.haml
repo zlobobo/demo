@@ -1,0 +1,6 @@
+= simple_form_for @user do |f|
+  = f.input :name, label: 'Name:<br/>'
+  %br/
+  = f.input :admin, label: ' - is Admin'
+  %br/
+  = f.button :submit

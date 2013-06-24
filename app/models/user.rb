@@ -11,18 +11,17 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   after_destroy :ensure_an_admin_remains
-
+  after_update :ensure_an_admin_remains
 
   validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
   validates :name, :length => { :maximum => 30 }
   validates :name, :presence => true
 
-
 private
 
   def ensure_an_admin_remains
     if User.where('admin = ?',true).count.zero?
-      raise "Can't delete last administrator"
+      raise "Can't remove last administrator"
     end
   end
 

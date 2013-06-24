@@ -1,12 +1,17 @@
 class TimetablesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_time, only: [:show,:edit,:update,:destroy]
+  before_filter :find_time, only: [:edit,:update,:destroy]
 
   def index
     @timetables = Timetable.where('user_id = ?',current_user.id )
   end
 
   def show
+     if current_user[:admin]
+          redirect_to :controller => 'master', :action => 'index'
+        else 
+          redirect_to timetables_url
+        end       
   end
 
   def new

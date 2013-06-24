@@ -1,0 +1,28 @@
+%h1 Users timetable
+%table{border: "1"}
+  %tr
+    %th User Name
+    %th Task ID
+    %th Date
+    %th Comments
+    %th Hours
+  - @time.each do |t|
+    %tr
+      %td= t.user.name
+      %td= t.task_id
+      %td= t.date
+      %td= t.comment
+      %td= t.hours
+%br/
+%br/
+%h1 Users total time
+%table{border: "1"}
+  %tr
+    %th User Name
+    %th Hours
+  - @sum.each do |s|
+    %tr
+      %td= s.user.name
+      %td= s.summ
+%br/
+= link_to 'Back', master_index_path

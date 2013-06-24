@@ -1,0 +1,23 @@
+%h1 Users
+= form_tag('master/report', method: :post) do
+  %table{border: "1"}
+    %tr
+      %th
+      %th Name
+      %th Email
+      %th Is Admin
+      %th Actions
+    - @list.each do |u|
+      %tr
+        %td= check_box_tag "ids[]", u.id
+        %td= link_to "#{u.name}", time_user_path(u), method: :get
+        %td= u.email
+        %td= 'Yes' if u.admin
+        %td= link_to 'Edit', edit_user_path(u)
+  %div
+    Report from
+    \#{text_field_tag 'startDate', Date.today - 7.days, :size => 10}
+    to #{text_field_tag 'endDate', Date.today, :size => 10}
+  = submit_tag "Web Report", name: "report"
+  = submit_tag "Excel", name: "excel"
+  = submit_tag "XML", name: "xml"

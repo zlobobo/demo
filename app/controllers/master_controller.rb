@@ -3,21 +3,15 @@ class MasterController < ApplicationController
   before_filter :check_admin
   before_filter :redir, only: [:edit,:update,:destroy,:show,:new,:create]
 
-  def show
-  end  
+  def show; end  
   
-  def new
-  end  
+  def new; end  
   
-  def edit
-  end  
-
+  def edit; end  
 
   def index
     @list = User.order(:admin)		 
   end	
-
-
 
   def report
     @start = params[:startDate] || (Date.today - 7.days)
@@ -39,7 +33,5 @@ class MasterController < ApplicationController
     end
   
   end 
-
-
   
 end
