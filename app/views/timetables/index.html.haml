@@ -1,22 +1,24 @@
-.container
-
-  %h3 Listing timetables for last 7 days
-  %table{border: "1", class: "table table-bordered"}
+%p.text-center
+  %span.label.label-info Listing timetables for last 7 days
+%br
+%table{border: "1", class: "table table-bordered"}
+  %tr
+    %th Task ID
+    %th Date
+    %th Comments
+    %th Hours
+    %th Actions
+  - @timetables.each do |t|
     %tr
-      %th Task ID
-      %th Date
-      %th Comments
-      %th Hours
-      %th Actions
-    - @timetables.each do |t|
-      %tr
-        %td= t.task_id
-        %td= t.date
-        %td= t.comment
-        %td= t.hours
-        %td
-          =link_to 'Edit', edit_timetable_path(t), class: 'btn btn-mini' 
-          =button_to 'Destroy', t, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-mini btn-danger'
-       
-  %br/
-  = link_to 'New', new_timetable_path, class: 'btn btn-primary'
+      %td= t.task_id
+      %td= t.date
+      %td= t.comment
+      %td= t.hours
+      %td
+        %a.btn.btn-mini{href: edit_timetable_path(t)}
+          Edit
+          %i.icon-white.icon-pencil
+        =button_to 'Destroy', t, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-mini btn-danger"
+
+%br
+%a.btn.btn-primary{href: new_timetable_path} New

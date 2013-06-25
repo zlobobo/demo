@@ -1,18 +1,12 @@
 = simple_form_for @timetable do |f|
   -if current_user.admin
     = f.input :user_id, label: 'User:<br/>', collection: @users, default: params[:user_id]
-    %br/
   - else
     = f.hidden_field :user_id, value: current_user.id
-    %br/
   = f.input :task_id, label: 'Task ID:<br/>'
-  %br/
-  = f.input :date, label: 'Date:<br/>', default: Date.current
-  %br/
-  = f.input :comment, label: 'Comment:<br/>'
-  %br/
+  = f.input :date, input_html: { value: Date.current}, as: :string, label: 'Date:<br/>'
+  = f.input :comment, input_html: { rows: '5'}, label: 'Comment:<br/>'
   = f.input :hours, label: 'Hours:<br/>'
-  %br/
-  = f.button :submit
+  = f.button :submit, class: "btn btn-middle btn-primary"
 
 

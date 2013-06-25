@@ -16,8 +16,8 @@
         %td= link_to 'Edit', edit_user_path(u)
   %div
     Report from
-    \#{text_field_tag 'startDate', Date.today - 7.days, :size => 10}
-    to #{text_field_tag 'endDate', Date.today, :size => 10}
+    \#{text_field_tag 'startDate', Date.today - 7.days, size: 10}
+    to #{text_field_tag 'endDate', Date.today, size: 10}
   = submit_tag "Web Report", name: "report"
   = submit_tag "Excel", name: "excel"
   = submit_tag "XML", name: "xml"

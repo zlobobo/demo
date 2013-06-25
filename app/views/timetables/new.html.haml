@@ -1,8 +1,11 @@
-%h1 Please add worktime
+%p.text-center
+  %span.label.label-info Adding timetable
+%br
 
-= render 'form'
+.form-signin
+  = render 'form'
 
-- if current_user.admin
-  = link_to 'Back', master_index_path
-- else
-  = link_to 'Back', timetables_path
+  - if current_user.admin
+    = link_to 'Back', master_index_path
+  - else
+    = link_to 'Back', timetables_path
