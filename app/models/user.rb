@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :name, :length => { :maximum => 30 }
   validates :name, :presence => true
 
-private
+  private
 
   def ensure_an_admin_remains
     if User.where('admin = ?',true).count.zero?

@@ -10,22 +10,33 @@
   %body
     .container-narrow
       - if user_signed_in?
-        .masthead
-          %ul.nav.nav-pills.pull-right
-            .btn-group
-              %a.btn.btn-primary
+        .row-fluid{align: "center"}
+          .span2
+            %img.img-polaroid{src: "https://si0.twimg.com/profile_images/676146303/Demo_PencilLogo_white.jpg", width: "100", height: "100"}
+          .span8
+            .navbar
+              .navbar-inner
+                %a.brand Demo project
+                %ul.nav
+                  %li.divider-vertical
+                  %li
+                    - if current_user.admin
+                      %a{href: master_index_path} Home
+                    - else
+                      %a{href: timetables_path} Home
+                  %li.divider-vertical
+                  %li
+                    %a{href: help_user_index_path} FAQ
+                  %li.divider-vertical
+          .span2
+            .container
+            %ul
+              %a{href: edit_user_path(current_user)}
                 %i.icon-user.icon-white
                 #{current_user.name}
-              %a.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
-                %span.caret
-              %ul.dropdown-menu
-                %li
-                  %a
-                    =button_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn btn-mini btn-inverse"
-
-
-        %h3.muted Demo project
-
+            %ul
+              %a
+                =button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-mini btn-inverse"
       %hr
 
       - if flash.notice

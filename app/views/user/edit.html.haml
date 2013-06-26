@@ -1,6 +1,11 @@
-%h1 Editing user
+%p.text-center
+  %span.label.label-info Editing user
+%br
 
-= render 'form'
-
-= button_to 'Destroy', user_path, confirm: 'Are you sure?', method: :delete
-= link_to 'Back', master_index_path
+.form-signin
+  = render 'form'
+  - if current_user.admin
+    = button_to 'Destroy', user_path, data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-middle btn-danger"
+    = link_to 'Back', master_index_path
+  -else
+    = link_to 'Back', timetables_path

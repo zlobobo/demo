@@ -1,0 +1,43 @@
+%p.text-center
+  %span.label.label-info FAQ
+
+#main.site
+  .faq
+    %h3 What is it?
+    %p
+      Small demo application for presentation of
+      %strong "powerful"
+      skills.
+
+  .faq.group
+    %h3 How does this work? And who are admins and users?
+    %p
+      %strong
+        %a{href: new_user_registration_path} You can sign up
+      and start to work with app.
+    %p
+      We have two roles in our application:
+    %ul.faq
+      %li
+        Sign in as a
+        %strong user
+        if you are a employer who would like to report you completed work.
+      %li
+        Sign in as a
+        %strong admin
+        if you are responsible for managing of users work or want to create report.
+
+  .faq
+    %h3 How can I test system?
+    %ul.faq
+      %li
+        Please
+        %a{href: new_user_session_path} sign in
+        as 1@tut.by to test user functionality.
+      %li
+        Please
+        %a{href: new_user_session_path} sign in
+        as zlobarik@tut.by to test admin functionality.
+    %p
+      Password in both cases is
+      %strong 12345678

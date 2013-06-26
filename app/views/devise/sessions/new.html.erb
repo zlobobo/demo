@@ -13,7 +13,8 @@
 	</div>
   <% end -%>
 
-  <div><%= f.submit "Sign in", :class => "btn btn-large btn-primary" %></div>
+  <div><%= f.submit "Sign in", :class => "btn btn-large btn-primary" %> or read <%= link_to "Help", help_user_index_path %></div>
+
   <br/>
   <%= render "devise/shared/links" %>
 <% end %>

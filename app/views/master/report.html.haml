@@ -1,5 +1,8 @@
-%h1 Users timetable
-%table{border: "1"}
+%p.text-center
+  %span.label.label-info Users timetables
+%br
+
+%table{border: "1", class: "table table-bordered"}
   %tr
     %th User Name
     %th Task ID
@@ -13,16 +16,30 @@
       %td= t.date
       %td= t.comment
       %td= t.hours
-%br/
-%br/
-%h1 Users total time
-%table{border: "1"}
-  %tr
-    %th User Name
-    %th Hours
-  - @sum.each do |s|
-    %tr
-      %td= s.user.name
-      %td= s.summ
-%br/
+%hr
+.row-fluid
+  .span6
+    %p.text-center
+      %span.label.label-info Users total time
+    %br
+    %table{border: "1", class: "table table-bordered"}
+      %tr
+        %th User Name
+        %th Hours
+      - @sum.each do |s|
+        %tr
+          %td= s.user.name
+          %td= s.summ
+  .span6
+    %p.text-center
+      %span.label.label-info Total time
+    %br
+    %table{border: "1", class: "table table-bordered"}
+      %tr
+        %th User count
+        %th Hours
+        %tr
+          %td= @tuser
+          %td= @tsum
+%br
 = link_to 'Back', master_index_path

@@ -1,3 +1,5 @@
+//= require jquery_ujs
+//= require jquery
 $(function() {
 		$( "#startDate" ).datepicker({ dateFormat: "yy-mm-dd" });
 	});

@@ -6,16 +6,15 @@ Demo::Application.routes.draw do
   
   resources :user do 
     resources :timetables
-    get 'time', :on => :member
+    get 'time', on: :member
+    get 'help', on: :collection
   end  
   
-  root to: "home#index"
+  root to: "user#index"
 
   resources :master do
-    post 'report', :on => :collection
+    post 'report', on: :collection
   end
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

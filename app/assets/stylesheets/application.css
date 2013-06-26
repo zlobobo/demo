@@ -48,3 +48,80 @@ body {
         margin-bottom: 15px;
         padding: 7px 9px;
       }
+/* faq styles */
+        div.faq {
+            margin: 0 0 20px 0;
+            padding: 20px 20px 5px 20px;
+            background: gainsboro;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+            -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08); }
+
+        div.faq-last {
+            margin-bottom: 35px; }
+
+        #main div.faq p {
+            margin: 0;
+            padding: 0 0 15px 0;
+            line-height: 1.5;
+            color: #777777; }
+
+        #main div.faq p.note {
+            color: #999999; }
+
+        #main div.faq h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #444444; }
+
+        div.site div.faq ul.text-list li,
+        #main div.faq ul.text-list li {
+            margin: 0 0 5px 30px;
+            line-height: 1.4;
+            color: #777777; }
+
+        div.site div.faq ul.text-list li:last-child,
+        #main div.faq ul.text-list li:last-child {
+            margin-bottom: 0; }
+
+        #main div.faq ul.text-list {
+            margin: 0;
+            padding: 10px 0 25px 0; }
+
+        #main div.faq ul.text-list li {
+            font-size: 13px;
+            line-height: 1.5;
+            list-style: disc; }
+
+        #main div.faq ul.faq {
+            margin: 0 0 15px 0;
+            padding: 0; }
+
+        #main div.faq ul.faq li {
+            margin: 0 0 5px 17px;
+            list-style: disc;
+            color: #777777; }
+
+        /* faq in sidebar */
+        dl.faq {
+            margin: 0 0 25px 0;
+            font-size: 11px;
+            line-height: 1.4; }
+
+        dl.faq dt {
+            margin: 0 0 2px 0;
+            font-weight: bold;
+            color: #666; }
+
+        dl.faq dd {
+            margin: 0 0 10px 0;
+            color: #999999; }
+
+        dl.faq dd:last-child {
+            margin: 0;
+            border: none; }

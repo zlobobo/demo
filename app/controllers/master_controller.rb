@@ -18,20 +18,22 @@ class MasterController < ApplicationController
     @end = params[:endDate] || Date.today
 
     if params[:ids]
-      @time = Timetable.where('user_id in (?)',params[:ids]).includes(:user).order(:user_id)
-      @time = @time.where(:date =>  @start..@end)
+      @time = Timetable.where('user_id in (?)', params[:ids]).includes(:user).order(:user_id)
+      @time = @time.where(date: @start..@end)
+      @tsum = @time.sum(:hours)
       @sum = @time.select("user_id,SUM(hours) as summ").group('user_id')
-      
-      if params[:excel]
+      @tuser = @time.count('user_id', distinct: true)
+
+          if params[:excel]
         render 'master/report.xls'      
-      else if params[:xml]
-      	       render 'master/report.xml'
-      	   end
+      else
+        if params[:xml]
+      	  render 'master/report.xml'
+      	end
       end 
     else
-      redirect_to :controller => 'master', :action => 'index'
+      redirect_to controller: 'master', action: 'index'
     end
-  
   end 
   
 end

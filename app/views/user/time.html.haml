@@ -1,10 +1,18 @@
-%h2 Listing timetables for last 7 days
-= form_tag(time_user_path, :id => 'time', method: :get) do
-  %div
-    From: #{text_field_tag 'startDate', @start, :size => 10}
-    to #{text_field_tag 'endDate', @end, :size => 10}
-    \#{submit_tag "Update"}
-  %table{border: "1"}
+%p.text-center
+  %span.label.label-info Listing timetables for last 7 days
+%br
+= form_tag(time_user_path, id: 'time', method: :get) do
+  .row-fluid
+    .span9
+      .input-prepend
+        %span.add-on From
+        =text_field_tag 'startDate', @start, :size => 10
+        %span.add-on to
+        =text_field_tag 'endDate', @end, :size => 10
+    .span3{align: "left"}
+      = submit_tag "Update", class: "btn btn-mini btn-primary"
+
+  %table{border: "1", class: "table table-bordered"}
     %tr
       %th User Name
       %th Task ID
@@ -19,15 +27,18 @@
         %td= t.date
         %td= t.comment
         %td= t.hours
-        %td= link_to 'Edit', edit_user_timetable_path(t.user_id,t.id)
-        %td= button_to 'Destroy', user_timetable_path(t.user_id,t.id), confirm: 'Are you sure?', method: :delete
-  %div
-    Total hours: #{@time.sum(:hours)}
-%br/
-= link_to 'Add New', new_user_timetable_path(params[:id])
-%br/
-= link_to 'Back', master_index_path
+        %td
+          %a.btn.btn-mini{href: edit_user_timetable_path(t.user_id,t.id)}
+            Edit
+            %i.icon-white.icon-pencil
+          = button_to 'Destroy', user_timetable_path(t.user_id,t.id), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-mini btn-danger"
 
+%p.text-right Total hours: #{@time.sum(:hours)}
+
+%br
+.btn-group
+  %a.btn.btn-primary{href: new_user_timetable_path(params[:id])} New
+  %a.btn{href: master_index_path} Back
 
 
 

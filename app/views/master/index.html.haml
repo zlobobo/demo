@@ -1,23 +1,41 @@
-%h1 Users
+%p.text-center
+  %span.label.label-info Users
+%br
+
 = form_tag('master/report', method: :post) do
-  %table{border: "1"}
+  %table{border: "1", class: "table table-bordered"}
     %tr
       %th
-      %th Name
-      %th Email
-      %th Is Admin
-      %th Actions
+      %th
+        %p.text-center Name
+      %th
+        %p.text-center Email
+      %th
+        %p.text-center Admin
+      %th
+        %p.text-center Actions
     - @list.each do |u|
       %tr
         %td= check_box_tag "ids[]", u.id
         %td= link_to "#{u.name}", time_user_path(u), method: :get
         %td= u.email
-        %td= 'Yes' if u.admin
-        %td= link_to 'Edit', edit_user_path(u)
-  %div
-    Report from
-    \#{text_field_tag 'startDate', Date.today - 7.days, size: 10}
-    to #{text_field_tag 'endDate', Date.today, size: 10}
-  = submit_tag "Web Report", name: "report"
-  = submit_tag "Excel", name: "excel"
-  = submit_tag "XML", name: "xml"
+        %td
+          - if u.admin
+            %p.text-center
+              %i.icon-user.icon-ok
+        %td
+          %a.btn.btn-mini{href: edit_user_path(u)}
+            Edit
+            %i.icon-white.icon-pencil
+
+  .row-fluid
+    .span9
+      .input-prepend
+        %span.add-on From
+        =text_field_tag 'startDate', Date.today - 7.days, size: 10
+        %span.add-on to
+        =text_field_tag 'endDate', Date.today, size: 10
+    .span3
+      = submit_tag "Web Report", name: "report", class: "btn btn-mini btn-primary"
+      = submit_tag "Excel", name: "excel", class: "btn btn-mini btn-primary"
+      = submit_tag "XML", name: "xml", class: "btn btn-mini btn-primary"

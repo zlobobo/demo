@@ -7,11 +7,11 @@ class TimetablesController < ApplicationController
   end
 
   def show
-     if current_user[:admin]
-          redirect_to :controller => 'master', :action => 'index'
-        else 
-          redirect_to timetables_url
-        end       
+    if current_user[:admin]
+      redirect_to controller: 'master', action: 'index'
+    else
+      redirect_to timetables_url
+    end
   end
 
   def new
@@ -25,53 +25,49 @@ class TimetablesController < ApplicationController
 
   def create
     @timetable = Timetable.new(params[:timetable])
-      if @timetable.save
-        if current_user[:admin]
-          redirect_to :controller => 'master', :action => 'index', notice: 'Timetable was successfully created.'
-        else 
-          redirect_to timetables_url, notice: 'Timetable was successfully created.'
-        end       
+    if @timetable.save
+      if current_user[:admin]
+        redirect_to controller: 'master', action: 'index', notice: 'Timetable was successfully created.'
       else
-        render action: "new"
+        redirect_to timetables_url, notice: 'Timetable was successfully created.'
       end
-    
+    else
+      render action: "new"
+    end
   end
 
   def update
-      if @timetable.update_attributes(params[:timetable])
-        if current_user[:admin]
-          redirect_to :controller => 'master', :action => 'index', notice: 'Timetable was successfully updated.'
-        else 
-          redirect_to timetables_url, notice: 'Timetable was successfully updated.'
-        end  
+    if @timetable.update_attributes(params[:timetable])
+      if current_user[:admin]
+        redirect_to controller: 'master', action: 'index', notice: 'Timetable was successfully updated.'
       else
-        render action: "edit"
-        
+        redirect_to timetables_url, notice: 'Timetable was successfully updated.'
       end
+    else
+      render action: "edit"
     end
+  end
 
   def destroy
     @timetable.destroy
     if current_user[:admin]
-      redirect_to :controller => 'master', :action => 'index', notice: 'Timetable was successfully deleted.'
+      redirect_to controller: 'master', action: 'index', notice: 'Timetable was successfully deleted.'
     else 
       redirect_to timetables_url, notice: 'Timetable was successfully deleted.'
     end  
   end
 
-private
+  private
 
   def find_time
-    begin
     @timetable=Timetable.find(params[:id])
     rescue ActiveRecord::RecordNotFound => e
-    flash[:notice] = e.message
-    redirect_to :controller => 'timetables', :action => 'index'
-    end
-    unless @timetable.user_id == current_user.id or current_user[:admin]
-      flash[:notice] = "Access Denied"
-      redirect_to :controller => 'timetables', :action => 'index'
-    end
+      flash[:notice] = e.message
+      redirect_to controller: 'timetables', action: 'index'
+    else
+      unless @timetable.user_id == current_user.id || current_user[:admin]
+        flash[:notice] = "Access Denied"
+        redirect_to controller: 'timetables', action: 'index'
+      end
   end
-
 end
