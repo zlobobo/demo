@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   before_filter :authenticate_user!, except: [:help]
   before_filter :find_user, only: [:edit,:update,:destroy,:time]
-  before_filter :redir, only: [:show,:new,:create,:index]
+  before_filter :redir, only: [:show,:new,:create]
   
   def show; end  
   
@@ -9,7 +9,9 @@ class UserController < ApplicationController
   
   def new; end  
   
-  def edit; end  
+  def edit;
+    @check = User.where('admin = ?', true).count
+  end
 
   def update
     if @user.update_attributes(params[:user])

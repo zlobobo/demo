@@ -2,6 +2,7 @@
   = f.input :name, label: 'Name:<br/>'
   %br
   - if current_user.admin
-    = f.input :admin, label: ' - is Admin'
+    - if params[:id] != current_user.id.to_s || @check > 1
+      = f.input :admin, label: ' - is Admin'
     %br
   = f.button :submit
